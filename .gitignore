@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large files and datasets - DO NOT COMMIT
+*.png
+*.jpg
+*.jpeg
+*.gif
+dataset/
+queries/
+static/dataset/
+static/images/
+static/img/
+
+# CSV files (if too large)
+*.csv
+
+# Other
+.git/
+*.log
+*.txt
