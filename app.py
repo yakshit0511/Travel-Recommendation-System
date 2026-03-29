@@ -1,8 +1,12 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, request, render_template,url_for,flash,redirect,session
 from flaskext.mysql import MySQL
 from functools import wraps
 from image_recomend import Images
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Recomendation
 import pandas as pd
@@ -16,15 +20,15 @@ from twilio.rest import Client
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'ec830e5ae057c5b08f5a435a7b13e891'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'ec830e5ae057c5b08f5a435a7b13e891')
 
 # Config MySQL
-app.config['MYSQL_DATABASE_HOST'] = "localhost"
-#app.config['MYSQL_DATABASE_PORT'] = 3306
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'myflaskapp'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+app.config['MYSQL_DATABASE_HOST'] = os.getenv('MYSQL_DATABASE_HOST', 'localhost')
+app.config['MYSQL_DATABASE_PORT'] = int(os.getenv('MYSQL_DATABASE_PORT', 3306))
+app.config['MYSQL_DATABASE_USER'] = os.getenv('MYSQL_DATABASE_USER', 'root')
+app.config['MYSQL_DATABASE_PASSWORD'] = os.getenv('MYSQL_DATABASE_PASSWORD', '')
+app.config['MYSQL_DATABASE_DB'] = os.getenv('MYSQL_DATABASE_DB', 'myflaskapp')
+app.config['MYSQL_CURSORCLASS'] = os.getenv('MYSQL_CURSORCLASS', 'DictCursor')
 # init MYSQL
 mysql = MySQL()
 mysql.init_app(app)
